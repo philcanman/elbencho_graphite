@@ -29,14 +29,4 @@ Options:
 
 ## Example
 
-elbencho -t 20 --iodepth 4 --write --rwmixpct 60 --direct --block 8k --size 1g /tmp/test{1..256} --livecsv stdout --liveint 1000  | ./elbencho_graphite.sh -s lpc-vdb-cmd01 -t demo
-
-```
-Options:
-  -s, --server    Set the Graphite server address (default: localhost)
-  -p, --port      Set the Graphite port (default: 2003)
-  -t, --tag       Set the tag to be used in the metric name (default: default)
-  -e, --echo      Echo the data to console (default: disabled)
-  -h, --help      Show this help message
-
-```
+elbencho -t 20 --iodepth 4 --write --rwmixpct 60 --direct --block 8k --size 1g /tmp/test{1..256} --livecsv stdout --liveint 1000  | ./elbencho_graphite.sh -s grafana-host -t demo1
