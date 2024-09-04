@@ -27,6 +27,6 @@ Options:
 
 ```
 
-## Example
+## Example Command
 
 elbencho -t 20 --iodepth 4 --write --rwmixpct 60 --direct --block 8k --size 1g /tmp/test{1..256} --livecsv stdout --liveint 1000  | ./elbencho_graphite.sh -s grafana-host -t demo1
