@@ -7,8 +7,9 @@ A simple bash script to help graph Elbencho in real-time.  This script parses El
 ![elbencho_graphite dashboard](assets/elbencho_dashboard.png "elbencho_graphite dashboard")
 
 ## Dependencies:
-Ensure that nc (netcat) is installed (for sending data to graphite)
-Elbencho must be configured to output CSV format to stdout via the --livecsv switch (Elbencho v3.0.19 or higher)
+
+- Ensure that nc (netcat) is installed (for sending data to graphite)
+- Elbencho must be configured to output CSV format to stdout via the --livecsv switch (Elbencho v3.0.19 or higher)
 
 ## Usage
 Simply run Elbencho with the --livecsv switch and pipe to this script.  Optionally you can set --liveint 1000 to receive data every second.  Default it every 2 seconds.
