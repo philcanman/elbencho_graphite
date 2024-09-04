@@ -6,6 +6,27 @@ PORT=2003
 TAG="default"
 ECHO_TO_CONSOLE=0  # Default is to not echo to console
 
+# Function to display help information
+print_help() {
+    echo "Usage: $(basename $0) [options]"
+    echo
+    echo "Options:"
+    echo "  -s, --server    Set the Graphite server address (default: localhost)"
+    echo "  -p, --port      Set the Graphite port (default: 2003)"
+    echo "  -t, --tag       Set the tag to be used in the metric name (default: default)"
+    echo "  -e, --echo      Echo the data to console (default: disabled)"
+    echo "  -h, --help      Show this help message"
+    echo
+    echo "Description:"
+    echo "This script processes CSV data from Elbencho piped into it, and sends data to a Graphite server."
+}
+
+# Default values for server, port, tag, and console output
+SERVER="localhost"
+PORT=2003
+TAG="default"
+ECHO_TO_CONSOLE=0  # Default is to not echo to console
+
 # Parse command-line arguments
 while [[ "$#" -gt 0 ]]; do
     case $1 in
@@ -13,7 +34,8 @@ while [[ "$#" -gt 0 ]]; do
         -p|--port) PORT="$2"; shift ;;
         -t|--tag) TAG="$2"; shift ;;
         -e|--echo) ECHO_TO_CONSOLE=1 ;;  # Enable echo to console
-        *) echo "Unknown parameter passed: $1"; exit 1 ;;
+        -h|--help) print_help; exit 0 ;;  # Show help message and exit
+        *) echo "Unknown parameter passed: $1"; print_help; exit 1 ;;
     esac
     shift
 done
