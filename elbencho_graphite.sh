@@ -21,12 +21,6 @@ print_help() {
     echo "This script processes CSV data from Elbencho piped into it, and sends data to a Graphite server."
 }
 
-# Default values for server, port, tag, and console output
-SERVER="localhost"
-PORT=2003
-TAG="default"
-ECHO_TO_CONSOLE=0  # Default is to not echo to console
-
 # Parse command-line arguments
 while [[ "$#" -gt 0 ]]; do
     case $1 in
