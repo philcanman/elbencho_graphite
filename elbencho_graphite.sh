@@ -50,6 +50,7 @@ while IFS=',' read -r line; do
     # Determine the MixType and set a tag
     MIXTYPE_TAG=""
     for ((i=0; i<${#fields[@]}; i++)); do
+        # echo "Processing field: ${HEADER_FIELDS[$i]}=${fields[$i]}"
         if [[ "${HEADER_FIELDS[$i],,}" == "mixtype" ]]; then
             if [[ "${fields[$i],,}" == "read" ]]; then  # Case-insensitive match
                 MIXTYPE_TAG="read"
@@ -61,9 +62,10 @@ while IFS=',' read -r line; do
         elif [[ "${HEADER_FIELDS[$i],,}" == "phase" ]]; then
             # Extract numeric value from Phase field or set MIXTYPE_TAG based on phase
             PHASE_CONTENT="${fields[$i]}"
+            
             PHASE_NUMERIC=$(echo "$PHASE_CONTENT" | sed 's/[^0-9]*//g')  # Extract numeric part
             
-            if [[ "$PHASE_CONTENT" == *"write"* ]]; then
+            if [[ "${PHASE_CONTENT,,}" == *"write"* ]]; then
                 MIXTYPE_TAG="write"
                 PHASE_NUMERIC=2  # Example value, modify as needed
             elif [[ "$PHASE_NUMERIC" =~ ^[0-9]+$ ]]; then
@@ -74,7 +76,7 @@ while IFS=',' read -r line; do
             fields[$i]=$PHASE_NUMERIC
 
             # Update MixType if Phase contains WRITE
-            if [[ "$PHASE_CONTENT" == *"write"* ]]; then
+            if [[ "${PHASE_CONTENT,,}" == *"write"* ]]; then
                 MIXTYPE_TAG="write"
                 # Find the index of the MixType field and update it
                 for ((j=0; j<${#HEADER_FIELDS[@]}; j++)); do
@@ -87,6 +89,9 @@ while IFS=',' read -r line; do
         fi
     done
 
+    # echo "Phase content: $PHASE_CONTENT"
+    # echo "Phase numeric: $PHASE_NUMERIC"
+    # echo "MixType tag: $MIXTYPE_TAG"
     # Get current timestamp
     TIMESTAMP=$(date +%s)
 
