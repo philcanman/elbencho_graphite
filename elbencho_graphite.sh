@@ -51,9 +51,15 @@ porcess_input() {
     HEADER=""
     HEADER_FIELDS=()
     while IFS=',' read -r line; do
+        # Skip lines without commas, as they're unlikely to be the CSV header
+        if [[ ! "$line" =~ , ]]; then
+            continue
+        fi
+
         if [[ -z "$HEADER" ]]; then
             HEADER="$line"
             IFS=',' read -r -a HEADER_FIELDS <<< "$HEADER"  # Store headers
+            echo "Parsed Headers: ${HEADER_FIELDS[*]}"  # Debug line
             continue
         fi
 
