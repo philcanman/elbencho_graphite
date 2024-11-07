@@ -29,10 +29,10 @@ Options:
 
 ## Example Command
 
-Local CLI Example:
+Local CLI Example:  
 elbencho -t 20 --iodepth 4 --write --direct --block 8k --size 1g /tmp/test{1..50} --livecsv stdout --liveint 1000 | ./elbencho_graphite.sh -s grafana-host -t demo1
 
-Docker Example:
+Docker Example:  
 docker run breuner/elbencho -t 20 --iodepth 4 --write --direct --block 8k --size 1g /tmp/test{1..50} --livecsv stdout --liveint 1000 | ./elbencho_graphite.sh -s grafana-host -t demo1
 
 Note: Do not include the -it flag in your Docker commands, as it can interfere with the output formatting when echoing output (-e).
