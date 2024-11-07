@@ -17,7 +17,7 @@ Simply run Elbencho with the --livecsv switch and pipe to this script.  Optional
 
 Options
 
-```
+```bash
 Options:
   -s, --server    Set the Graphite server address (default: localhost)
   -p, --port      Set the Graphite port (default: 2003)
@@ -29,4 +29,10 @@ Options:
 
 ## Example Command
 
-elbencho -t 20 --iodepth 4 --write --rwmixpct 60 --direct --block 8k --size 1g /tmp/test{1..256} --livecsv stdout --liveint 1000  | ./elbencho_graphite.sh -s grafana-host -t demo1
+Local CLI Example:
+elbencho -t 20 --iodepth 4 --write --direct --block 8k --size 1g /tmp/test{1..50} --livecsv stdout --liveint 1000 | ./elbencho_graphite.sh -s grafana-host -t demo1
+
+Docker Example:
+docker run breuner/elbencho -t 20 --iodepth 4 --write --direct --block 8k --size 1g /tmp/test{1..50} --livecsv stdout --liveint 1000 | ./elbencho_graphite.sh -s grafana-host -t demo1
+
+Note: Do not include the -it flag in your Docker commands, as it can interfere with the output formatting when echoing output (-e).
