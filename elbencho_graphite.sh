@@ -84,7 +84,10 @@ porcess_input() {
                 
                 PHASE_NUMERIC=$(echo "$PHASE_CONTENT" | sed 's/[^0-9]*//g')  # Extract numeric part
                 
-                if [[ "${PHASE_CONTENT,,}" == *"write"* ]]; then
+                if [[ "${PHASE_CONTENT,,}" == *"read"* ]]; then
+                    MIXTYPE_TAG="read"
+                    PHASE_NUMERIC=1  # Example value, modify as needed
+                elif [[ "${PHASE_CONTENT,,}" == *"write"* ]]; then
                     MIXTYPE_TAG="write"
                     PHASE_NUMERIC=2  # Example value, modify as needed
                 elif [[ "$PHASE_NUMERIC" =~ ^[0-9]+$ ]]; then
