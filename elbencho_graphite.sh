@@ -47,7 +47,7 @@ check_nc_version() {
     fi
 }
 
-porcess_input() {
+process_input() {
     HEADER=""
     HEADER_FIELDS=()
     while IFS=',' read -r line; do
@@ -165,4 +165,4 @@ porcess_input() {
 }
 
 check_nc_version
-porcess_input
+process_input
